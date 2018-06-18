@@ -4,6 +4,13 @@
 
     <div class="panel panel-default">
         <div class="panel-heading">DashBoard</div>
+        @if(session('notification'))
+            <div class="alert alert-success">
+
+                    {{session('notification')}}
+
+            </div>
+        @endif
 
 
 
@@ -19,7 +26,7 @@
         @endif
 
         <div class="panel-body">
-            <form action="/reportar" method="post">
+            <form action="/usuarios" method="post">
                 {{csrf_field()}}
 
                 <div class="form-group">
@@ -36,7 +43,7 @@
                 </div>
                 <div class="form-group">
                     <label for="password">Contraseña</label>
-                    <input type="text" name="password" class="form-control" value="{{old('password')}}">
+                    <input type="text" name="password" class="form-control" value="{{old('password',str_random(6))}}">
 
 
                 </div>
@@ -47,7 +54,7 @@
 
                 </div>
             </form>
-            <table class="table">
+            <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th>E-mail</th>
@@ -56,14 +63,23 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($users as $user)
+
+
                     <tr>
-                        <td>arieldjmix@hotmail.com</td>
-                        <td>Ariel</td>
+                        <td>{{$user->email}}</td>
+                        <td>{{$user->name}}</td>
                         <td>
-                            <a href="#" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-edit"></span></a>
-                            <a href="#" class="btn btn-sm btn-danger">Dars de Baja</a>
+                            <a href="/usuarios/{{$user->id}}" class="btn btn-sm btn-primary" title="Editar">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </a>
+                            <a href="/usuarios/{{$user->id}}" class="btn btn-sm btn-danger" title="Dar de Baja">Darse de Baja
+                            <span class="glyphicon glyphicon-remove"></span>
+
+                            </a>
                         </td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
