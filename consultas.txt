@@ -1,0 +1,20 @@
+N1 MESA DE AMYUDA -> USER6,USER7
+N2 MESA DE POR TELEFONO -> USER5,USER9
+
+ProjectUser(project_user)
+project_id
+user_id
+level_id
+
+Incidencias asignadas a mi
+Indicent::where('project_id,1)->where('support_id',auth()->user()->id)
+
+//obtenemos un objeto de la tabla n n project_user
+$projectUser=ProjectUser::where('project_id',1)->where('user_id',auth()->user()->id)->first();
+Incidencias sin asignar
+Indicent::where('project_id,1)->where('support_id',null)
+->where('level_id',$projectUser->level_id)->get()
+
+Incidencias reportadas por mi el 1 hacer referencia al projecto 
+Incident::where('client_id',auth()->user()->id)->where('project_id',1)
+
