@@ -73,7 +73,7 @@
                             <a href="/usuarios/{{$user->id}}" class="btn btn-sm btn-primary" title="Editar">
                                 <span class="glyphicon glyphicon-pencil"></span>
                             </a>
-                            <a href="/usuarios/{{$user->id}}" class="btn btn-sm btn-danger" title="Dar de Baja">Darse de Baja
+                            <a href="/usuarios/{{$user->id}}/eliminar" class="btn btn-sm btn-danger" title="Dar de Baja">Darse de Baja
                             <span class="glyphicon glyphicon-remove"></span>
 
                             </a>

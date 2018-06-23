@@ -31,6 +31,7 @@ Route::group(['middleware'=>'admin','namespace'=>'Admin'],function(){
     Route::post('/usuarios','UserController@store');
     Route::get('/usuarios/{id}','UserController@edit');
     Route::post('/usuarios/{id}','UserController@update');
+    Route::get('/usuarios/{id}/eliminar','UserController@delete');
     Route::get('/proyectos','ProjectController@index');
     Route::get('/config','ConfigController@index');
 });
