@@ -74,9 +74,7 @@
 
                         <td>{{$project->start?:'No se Indico Fecha de Inicio'}}</td>
                         <td>
-                            <a href="/proyecto/{{$project->id}}" class="btn btn-sm btn-primary" title="Editar">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                            </a>
+
                             @if($project->trashed())
                                 <a href="/projecto/{{$project->id}}/restaurar" class="btn btn-sm btn-success" title="Dar de Baja">Restaurar
                                     <span class="glyphicon glyphicon-remove"></span>
@@ -86,6 +84,9 @@
                                 <a href="/projecto/{{$project->id}}/eliminar" class="btn btn-sm btn-danger" title="Dar de Baja">Darse de Baja
                                     <span class="glyphicon glyphicon-remove"></span>
 
+                                </a>
+                                <a href="/proyecto/{{$project->id}}" class="btn btn-sm btn-primary" title="Editar">
+                                    <span class="glyphicon glyphicon-pencil"></span>
                                 </a>
 
                             @endif
