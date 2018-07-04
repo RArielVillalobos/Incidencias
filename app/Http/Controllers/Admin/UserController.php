@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Project;
+use App\ProjectUser;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
@@ -45,8 +47,11 @@ class UserController extends Controller
 
     public function edit($id){
         $user=User::findorFail($id);
+        $projects=Project::all();
+        $projects_users=ProjectUser::where('user_id','=',$id)->get();
 
-        return view('admin.users.edit',['user'=>$user]);
+
+        return view('admin.users.edit',['user'=>$user,'projects'=>$projects,'projects_users'=>$projects_users]);
     }
 
     public function update($id,Request $request){

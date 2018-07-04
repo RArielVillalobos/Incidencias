@@ -31,6 +31,7 @@ Route::group(['middleware'=>'admin','namespace'=>'Admin'],function(){
     Route::post('/usuarios','UserController@store');
 
     Route::get('/usuarios/{id}','UserController@edit');
+
     Route::post('/usuarios/{id}','UserController@update');
 
     Route::get('/usuarios/{id}/eliminar','UserController@delete');
@@ -54,6 +55,10 @@ Route::group(['middleware'=>'admin','namespace'=>'Admin'],function(){
     Route::post('/niveles','LevelController@store');
     Route::post('/nivel/editar','LevelController@update')->name('level.edit');
     Route::get('/nivel/{id}/borrar','LevelController@delete');
+
+    //Project-User
+    Route::post('proyecto-usuario','ProjectUserController@store');
+    Route::post('/usuarios/nivel/edit','ProjectUserController@editLevel')->name('proyecto-usuario.level.edit');
 
 
 

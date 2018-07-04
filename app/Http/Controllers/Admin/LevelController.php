@@ -46,4 +46,10 @@ class LevelController extends Controller
         return back();
 
     }
+
+    public function byProject($id){
+        //laravel automaticamente devolvera un JSON para el ajax
+        return Level::where('project_id','=',$id)->get();
+
+    }
 }
