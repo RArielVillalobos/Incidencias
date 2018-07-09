@@ -40,9 +40,14 @@
                         @if(auth()->check())
                         <form class="navbar-form navbar-left">
                             <div class="form-group">
-                                <select class="form-control">
-                                    <option value="">Proyecto A</option>
+                                <select  id="list-of-projects" class="form-control">
+                                    @foreach(auth()->user()->list_of_projects as $project)
+                                       <option @if($project->id==auth()->user()->selected_project_id)selected @endif value="{{$project->id}}">{{$project->name}}</option>
+
+                                    @endforeach
+
                                 </select>
+
 
                             </div>
                         </form>
@@ -50,6 +55,7 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
+
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @guest
@@ -105,7 +111,7 @@
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
-
+    <script src="/js/layout/app.js"></script>
     @yield('scripts')
 
 </body>

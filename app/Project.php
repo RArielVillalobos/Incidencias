@@ -21,5 +21,9 @@ class Project extends Model
         return $this->hasMany(Level::class);
     }
 
+    public function users(){
+        return $this->belongsToMany(User::class);
+    }
+
 
 }

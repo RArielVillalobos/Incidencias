@@ -30,7 +30,7 @@
                 {{csrf_field()}}
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="text" name="email" class="form-control" value="{{old('email',$user->email)}}">
+                    <input type="text" name="email" class="form-control" readonly="readonly" value="{{old('email',$user->email)}}">
 
 
                 </div>
@@ -98,7 +98,7 @@
                         <td>
                             <button class="btn btn-sm btn-success" id="editLevel" data-project="{{$project_user->project_id}}" data-nivel="{{$project_user->level->id}}" data-project-user="{{$project_user->id}}">Editar Nivel</button>
 
-                            <a href="#" class="btn btn-sm btn-danger" title="Dar de Baja">Darse de Baja
+                            <a href="{{route('proyecto-usuario.delete',$project_user->id)}}" class="btn btn-sm btn-danger" title="Dar de Baja">Darse de Baja
                                 <span>Eliminar</span>
 
                             </a>

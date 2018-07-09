@@ -43,5 +43,14 @@ class ProjectUserController extends Controller
 
         return back()->with('notification','nivel modificado correctamente');
 
-}
+    }
+
+    public function delete($id){
+        $project_user=ProjectUser::findOrFail($id);
+        $project_user->delete();
+
+        return back()->with('notification','Se elimino Correctamente');
+
+
+    }
 }

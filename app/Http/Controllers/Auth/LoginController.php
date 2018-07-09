@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -35,5 +36,25 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    //subscribiendo la funcion authenticated (se ejecuta luego d iniciar sesion)
+
+    public function authenticated(Request $request, $user)
+
+    {
+        $user=auth()->user();
+        //si es admin o cliente(osea no es de soporte) no hacemos nada
+        if($user->is_admin||$user->is_client){
+            return;
+
+         // si es de soporte
+        }if(!$user->selected_project_id){
+            $user->selected_project_id=$user->projects->first()->id;
+            $user->save();
+
+
+        }
+
     }
 }

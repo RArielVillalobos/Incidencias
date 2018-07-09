@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','role'
     ];
 
     /**
@@ -30,6 +30,23 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    //relacion muchos a muchos, cada usuario pertenece a muchos projectos y cada projecto tiene muchos usuarios
+    public function projects(){
+
+        return $this->belongsToMany(Project::class);
+    }
+
+    //definiendo otro accesors
+    public function getListOfProjectsAttribute(){
+        if($this->role==1){
+            return $this->projects;
+        }else{
+            return Project::all();
+        }
+
+    }
+
+    //accesors
     public function getIsAdminAttribute(){
         return $this->role==0;
 
@@ -39,4 +56,6 @@ class User extends Authenticatable
         return $this->role==2;
 
     }
+
+
 }

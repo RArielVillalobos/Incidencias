@@ -34,7 +34,10 @@ function editLevel(){
     var html_select='<option value="">Seleccione Nivel</option>';
     $.get('/api/projecto/'+project_id+'/niveles',function(data){
         for (var i=0; i<data.length; i++){
-            html_select+='<option value="'+data[i].id+'">'+data[i].name+'</option>';
+            //html_select+='<option value="'+data[i].id+'">'+data[i].name+'</option>';
+
+            //usando literal template(comillas invertidas)
+            html_select+=`<option value="${data[i].id}">${data[i].name}</option>`;
         }
 
         $('#project-id').val(project_id);
@@ -46,8 +49,4 @@ function editLevel(){
     });
 
     $('#modalEditLevel').modal('show');
-
-
-
-
 }

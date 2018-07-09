@@ -20,9 +20,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/seleccionar/proyecto/{id}','HomeController@selectProject');
 
-Route::get('/reportar','HomeController@report');
-Route::post('/reportar','HomeController@postReport');
+Route::get('/reportar','IncidentController@report');
+Route::post('/reportar','IncidentController@postReport');
 
 
 //Admistracion
@@ -59,6 +60,7 @@ Route::group(['middleware'=>'admin','namespace'=>'Admin'],function(){
     //Project-User
     Route::post('proyecto-usuario','ProjectUserController@store');
     Route::post('/usuarios/nivel/edit','ProjectUserController@editLevel')->name('proyecto-usuario.level.edit');
+    Route::get('/proyecto-usuario/{id}/borrar','ProjectUserController@delete')->name('proyecto-usuario.delete');
 
 
 
