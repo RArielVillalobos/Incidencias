@@ -19,6 +19,7 @@ class CreateIncidentsTable extends Migration
             $table->string('description');
             //este campo solo tendra 1 solo caracter
             $table->string('severity',1);
+            $table->boolean('active')->default(1);
 
             $table->integer('category_id')->unsigned()->nullable();
             $table->foreign('category_id')->references('id')->on('categories');

@@ -1,0 +1,14 @@
+-Cliente Crea Incidencia
+-Soporte que atiende
+-Cliente unico que cierra
+
+Estado de incidencias
+*Sin Asignar(pendiente)
+*Asignar(en Atencion)
+*Cerrado
+
+$incident->active  puede ser 1 o 0
+
+si support_id es Null seria pendiente
+en caso contrario es asignado
+

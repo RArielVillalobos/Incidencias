@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Incident;
+use App\Project;
 use App\Category;
 
 class IncidentController extends Controller
@@ -16,7 +17,7 @@ class IncidentController extends Controller
 
     public function report(){
         $categories=Category::where('project_id','=',1)->get();
-        return view('report',['categories'=>$categories]);
+        return view('incidents.report',['categories'=>$categories]);
     }
 
     public function postReport(Request $request){
@@ -45,10 +46,23 @@ class IncidentController extends Controller
         $incident->category_id=$request->input('category_id') ?: null;
         $incident->description=$request->input('description');
 
-        $incident->client_id=auth()->user()->id;
+        $user=auth()->user();
+        $incident->client_id=$user->id;
+        $incident->project_id=$user->selected_project_id;
+
+        //usando un accesors para obtener el primer nivel de cada projecto
+        $incident->level_id=Project::findOrFail($user->selected_project_id)->first_level_id;
+
         $incident->save();
 
         return back();
 
+    }
+
+
+    public function show($id){
+        $incident=Incident::findOrFail($id);
+
+        return view('incidents.show',['incident'=>$incident]);
     }
 }

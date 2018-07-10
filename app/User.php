@@ -57,5 +57,9 @@ class User extends Authenticatable
 
     }
 
+    public function getIsSupportAttribute(){
+        return $this->role==1;
+    }
+
 
 }

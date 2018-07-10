@@ -24,6 +24,7 @@ Route::get('/seleccionar/proyecto/{id}','HomeController@selectProject');
 
 Route::get('/reportar','IncidentController@report');
 Route::post('/reportar','IncidentController@postReport');
+Route::get('/ver/{id}','IncidentController@show');
 
 
 //Admistracion

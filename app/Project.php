@@ -25,5 +25,10 @@ class Project extends Model
         return $this->belongsToMany(User::class);
     }
 
+    public function getFirstLevelIdAttribute(){
+        return $this->levels->first()->id;
+
+    }
+
 
 }
